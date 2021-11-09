@@ -27,7 +27,7 @@ public class TradeJournalService {
         return new BigDecimal(et.getText().toString());
     }
 
-    private static TradeJournal performTradeCalculations(TradeJournal tradeJournal) {
+    public static TradeJournal performTradeCalculations(TradeJournal tradeJournal) {
         BigDecimal stopLoss = calculateStopLoss(tradeJournal.getBuyerDistal(), tradeJournal.getAtr());
         BigDecimal reward = tradeJournal.getSellerProximal().subtract(tradeJournal.getBuyerProximal());
         BigDecimal risk = tradeJournal.getBuyerProximal().subtract(stopLoss);

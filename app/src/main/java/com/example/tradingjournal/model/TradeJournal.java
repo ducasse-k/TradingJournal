@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 public class TradeJournal {
 
     //Use in constructor
+    private int id;
+    private String tickerSymbol;
     private BigDecimal atr;
     private BigDecimal buyerProximal;
     private BigDecimal buyerDistal;
@@ -32,6 +34,24 @@ public class TradeJournal {
         this.buyerDistal = buyerDistal;
         this.sellerProximal = sellerProximal;
         this.amountWillingToLose = amountWillingToLose;
+    }
+
+    public TradeJournal(int id, String tickerSymbol, BigDecimal atr, BigDecimal buyerProximal, BigDecimal buyerDistal, BigDecimal sellerProximal, BigDecimal amountWillingToLose, BigDecimal stopLoss, BigDecimal reward, BigDecimal risk, BigDecimal profit, BigDecimal loss, BigDecimal rrRatio, int quantity, BigDecimal totalCost) {
+        this.id = id;
+        this.tickerSymbol = tickerSymbol;
+        this.atr = atr;
+        this.buyerProximal = buyerProximal;
+        this.buyerDistal = buyerDistal;
+        this.sellerProximal = sellerProximal;
+        this.amountWillingToLose = amountWillingToLose;
+        this.stopLoss = stopLoss;
+        this.reward = reward;
+        this.risk = risk;
+        this.profit = profit;
+        this.loss = loss;
+        this.rrRatio = rrRatio;
+        this.quantity = quantity;
+        this.totalCost = totalCost;
     }
 
     @Override
@@ -155,5 +175,21 @@ public class TradeJournal {
 
     public void setTotalCost(BigDecimal totalCost) {
         this.totalCost = totalCost;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTickerSymbol() {
+        return tickerSymbol;
+    }
+
+    public void setTickerSymbol(String tickerSymbol) {
+        this.tickerSymbol = tickerSymbol;
     }
 }

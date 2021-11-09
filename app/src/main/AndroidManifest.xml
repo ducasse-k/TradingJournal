@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TradingJournal">
         <activity
+            android:name=".EditTradeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TradeListActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:id="@+id/llMainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,6 +32,7 @@
         </LinearLayout>
 
         <include layout="@layout/calculations_first_row" />
+
         <include layout="@layout/calculations_second_row" />
 
         <LinearLayout
@@ -76,20 +76,37 @@
         </LinearLayout>
 
         <include layout="@layout/calculations_stop_loss" />
+
         <include layout="@layout/calculations_buttons" />
 
-        <LinearLayout
-            android:id="@+id/llResults"
+        <Button
+            android:id="@+id/btnTest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape"
-            android:orientation="vertical"
-            android:padding="15dp"
-            android:visibility="gone">
+            android:text="Change to list"
+            />
 
-            <include layout="@layout/calculations_results_first_row"/>
-            <include layout="@layout/calculations_results_second_row"/>
-        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llResults"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:visibility="gone">
 
+        <include layout="@layout/calculations_results_first_row" />
+        <include layout="@layout/calculations_results_second_row" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:visibility="visible" />
     </LinearLayout>
-</ScrollView>
+
+</LinearLayout></ScrollView>
