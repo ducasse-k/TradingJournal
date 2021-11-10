@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.tradingjournal.model.OddEnhancersActivity;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -71,7 +72,10 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 Intent j = new Intent(this, MainActivity.class);
                 this.startActivity(j);
                 break;
-
+            case R.id.itemOddEnhancers:
+                Intent k = new Intent(this, OddEnhancersActivity.class);
+                this.startActivity(k);
+                break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

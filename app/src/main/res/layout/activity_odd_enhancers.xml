@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    tools:ignore="HardcodedText">
+
+    <TableLayout
+        android:id="@+id/tlOddEnhancers"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="#fdf2f2"
+        android:padding="5dp">
+
+        <TableRow android:padding="5dp"
+            android:background="@color/white"
+            >
+
+            <TextView
+                android:id="@+id/titleRRRatio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Risk Reward ratio"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow android:padding="5dp">
+
+            <TextView
+                android:id="@+id/rr2Points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:text="3:1"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/rr1Points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="2:1"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/rr1Point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1:1"
+                android:textColor="@color/black" />
+        </TableRow>
+
+        <TableRow
+            android:background="@color/white"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tvtitleFast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="How fast did it leave the buy zome?"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow android:padding="5dp">
+
+            <TextView
+                android:id="@+id/fast2Points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:textAlignment="center"
+                android:text="Long Candle"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/fast1Point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Medium Candle"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/fast0Points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Short Candle"
+                android:textColor="@color/black" />
+        </TableRow>
+
+        <TableRow
+            android:background="@color/white"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tvTitleZone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="How long in zone?"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/zone2Points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:text="1-2 Candles"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/zone1Point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="3-4 Candles"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/zone0Points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="5+ Candles"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+        </TableRow>
+
+        <TableRow
+            android:background="@color/white"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tvTitleRevisited"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Revisited?"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/revisited2Points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:text="Never"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/revisited1Point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Once"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/revisited0Points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Twice"
+                android:textColor="@color/black" />
+        </TableRow>
+
+        <TableRow
+            android:background="@color/white"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tvTitleScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="17dp"
+                android:text="Total Score"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/totalScore"
+                android:textSize="17dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="@color/black" />
+        </TableRow>
+    </TableLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/navigation_menu" />
+</androidx.drawerlayout.widget.DrawerLayout>
