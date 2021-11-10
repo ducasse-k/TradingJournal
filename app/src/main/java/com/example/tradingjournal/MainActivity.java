@@ -1,28 +1,37 @@
 package com.example.tradingjournal;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.example.tradingjournal.TradeJournalService.TradeJournalService;
 import com.example.tradingjournal.dao.DatabaseHelper;
 import com.example.tradingjournal.helpers.MainActivityHelper;
 import com.example.tradingjournal.model.TradeJournal;
+import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     Button calculateButton;
     Button clearButton;
     Button saveButton;
-    Button btnTest;
+    NavigationView navigationView;
 
     EditText etAtr;
     EditText etBuyerProximal;
@@ -44,16 +53,20 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout llErrorMessage;
     LinearLayout llMainLayout;
 
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
     int llDialogTickerSymbol;
-
     TradeJournal tradeJournal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setNavigationViewListener();
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+        setUpNavigationMenu();
 
         llResults = findViewById(R.id.llResults);
         llStopLoss = findViewById(R.id.llStopLoss);
@@ -86,19 +99,10 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
 
-        btnTest = findViewById(R.id.btnTest);
-        btnTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myIntent = new Intent(MainActivity.this, TradeListActivity.class);
-                startActivity(myIntent);
-            }
-        });
-
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( !isEmpty(etAtr) && !isEmpty(etBuyerProximal) && !isEmpty(etBuyerDistal) && !isEmpty(etSellerProximal) && !isEmpty(etWillingToLose)) {
+                if (!isEmpty(etAtr) && !isEmpty(etBuyerProximal) && !isEmpty(etBuyerDistal) && !isEmpty(etSellerProximal) && !isEmpty(etWillingToLose)) {
                     tradeJournal = TradeJournalService.newTradeJournal(etAtr, etBuyerProximal, etBuyerDistal, etSellerProximal, etWillingToLose);
                     MainActivityHelper.setTextViewForCalculations(tvRisk, tvReward, tvRiskRewardRatio, tvQuantity, tvCost, tvPotentialProfit, tvPotentialLoss, tvStopLoss, saveButton, tradeJournal, getApplicationContext());
                     llStopLoss.setVisibility(View.VISIBLE);
@@ -154,5 +158,50 @@ public class MainActivity extends AppCompatActivity {
             return false;
 
         return true;
+    }
+
+    private void setUpNavigationMenu() {
+        // drawer layout instance to toggle the menu icon to open
+        // drawer and back button to close drawer
+        drawerLayout = findViewById(R.id.my_drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+
+        // pass the Open and Close toggle for the drawer layout listener
+        // to toggle the button
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        // to make the Navigation drawer icon always appear on the action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    // override the onOptionsItemSelected()
+    // function to implement
+    // the item click listener callback
+    // to open and close the navigation
+    // drawer when the icon is clicked
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.itemTradingJournals:
+                Intent i = new Intent(MainActivity.this, TradeListActivity.class);
+                MainActivity.this.startActivity(i);
+                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    private void setNavigationViewListener() {
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 }

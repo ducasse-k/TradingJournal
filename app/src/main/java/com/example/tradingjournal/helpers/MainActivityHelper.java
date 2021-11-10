@@ -2,6 +2,7 @@ package com.example.tradingjournal.helpers;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tradingjournal.MainActivity;
+import com.example.tradingjournal.TradeListActivity;
 import com.example.tradingjournal.dao.DatabaseHelper;
 import com.example.tradingjournal.model.TradeJournal;
 
