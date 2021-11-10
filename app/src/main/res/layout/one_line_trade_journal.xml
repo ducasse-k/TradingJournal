@@ -4,10 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/oneLineTradeJournalLayout"
     android:layout_width="fill_parent"
-    android:layout_marginBottom="5dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:layout_marginBottom="20dp"
+    android:background="@color/floral_white">
 
-    <TableRow android:padding="5dp">
+    <TableRow
+        android:background="@color/maximum_yellow_red"
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/tv_tickerSymbol"
@@ -15,7 +19,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
             android:text="Ticker Symbol"
-            android:textColor="@color/cg_blue"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -25,20 +29,23 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:textColor="@color/light_sea_green"
             android:gravity="right"
             android:text="Text View"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
     </TableRow>
 
-    <TableRow android:padding="5dp">
+    <TableRow
+        android:background="@color/white"
+        android:padding="5dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="ATR" />
+            android:text="ATR"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_atr"
@@ -51,7 +58,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="BP" />
+            android:text="BP"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_buyerProximal"
@@ -67,7 +75,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SP" />
+            android:text="SP"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_sellerProximal"
@@ -80,7 +89,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="BD" />
+            android:text="BD"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_buyerDistal"
@@ -90,13 +100,16 @@
             android:text="Location" />
     </TableRow>
 
-    <TableRow android:padding="5dp">
+    <TableRow
+        android:background="@color/white"
+        android:padding="5dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SL" />
+            android:text="SL"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_stopLoss"
@@ -109,7 +122,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Willing to Lose" />
+            android:text="Willing to Lose"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_amountWillingToLose"
@@ -125,7 +139,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Reward" />
+            android:text="Reward"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_reward"
@@ -138,7 +153,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Risk" />
+            android:text="Risk"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_risk"
@@ -148,13 +164,16 @@
             android:text="Location" />
     </TableRow>
 
-    <TableRow android:padding="5dp">
+    <TableRow
+        android:background="@color/white"
+        android:padding="5dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Profit" />
+            android:text="Profit"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_Profit"
@@ -167,12 +186,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Loss" />
+            android:text="Loss"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_Loss"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="29dp"
             android:layout_weight="1"
             android:text="Location" />
     </TableRow>
@@ -183,7 +203,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Quantity" />
+            android:text="Quantity"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_quantity"
@@ -196,7 +217,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Total Cost" />
+            android:text="Total Cost"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_totalCost"
@@ -204,31 +226,5 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Location" />
-    </TableRow>
-
-    <TableRow android:padding="5dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-             />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
     </TableRow>
 </TableLayout>

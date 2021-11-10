@@ -22,6 +22,7 @@ public class TradeJournal {
     private BigDecimal rrRatio;
     private int quantity;
     private BigDecimal totalCost;
+    private String notes;
 
     public TradeJournal(BigDecimal atr,  BigDecimal buyerDistal) {
         this.atr = atr;
@@ -34,9 +35,10 @@ public class TradeJournal {
         this.buyerDistal = buyerDistal;
         this.sellerProximal = sellerProximal;
         this.amountWillingToLose = amountWillingToLose;
+        this.notes = "";
     }
 
-    public TradeJournal(int id, String tickerSymbol, BigDecimal atr, BigDecimal buyerProximal, BigDecimal buyerDistal, BigDecimal sellerProximal, BigDecimal amountWillingToLose, BigDecimal stopLoss, BigDecimal reward, BigDecimal risk, BigDecimal profit, BigDecimal loss, BigDecimal rrRatio, int quantity, BigDecimal totalCost) {
+    public TradeJournal(int id, String tickerSymbol, BigDecimal atr, BigDecimal buyerProximal, BigDecimal buyerDistal, BigDecimal sellerProximal, BigDecimal amountWillingToLose, BigDecimal stopLoss, BigDecimal reward, BigDecimal risk, BigDecimal profit, BigDecimal loss, BigDecimal rrRatio, int quantity, BigDecimal totalCost, String notes) {
         this.id = id;
         this.tickerSymbol = tickerSymbol;
         this.atr = atr;
@@ -52,6 +54,7 @@ public class TradeJournal {
         this.rrRatio = rrRatio;
         this.quantity = quantity;
         this.totalCost = totalCost;
+        this.notes = notes;
     }
 
     @Override
@@ -191,5 +194,11 @@ public class TradeJournal {
 
     public void setTickerSymbol(String tickerSymbol) {
         this.tickerSymbol = tickerSymbol;
+    }
+
+    public String getNotes() { return notes; }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 }

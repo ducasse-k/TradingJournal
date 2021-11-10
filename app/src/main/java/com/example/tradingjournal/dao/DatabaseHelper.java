@@ -31,6 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String RRRATIO = "rr_Ratio";
     public static final String QUANTITY = "quantity";
     public static final String TOTAL_COST = "total_cost";
+    public static final String NOTES = "notes";
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, "TradeJournal.db", null, 1);
@@ -54,13 +55,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 LOSS + " TEXT, " +
                 RRRATIO + " TEXT, " +
                 QUANTITY + " INTEGER, " +
-                TOTAL_COST + " TEXT)";
+                TOTAL_COST + " TEXT, " +
+                NOTES + " TEXT)";
         db.execSQL(createTableStatement);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
     public List<TradeJournal> getAllTradeJournals() {
@@ -98,8 +99,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         BigDecimal rrRatio = new BigDecimal(cursor.getString(12));
         int quantity = cursor.getInt(13);
         BigDecimal totalCost = new BigDecimal(cursor.getString(14));
+        String notes = cursor.getString(15);
+        if (notes.equals(null)) notes = "";
 
-        TradeJournal tradeJournal = new TradeJournal(id, tickerSymbol, atr, buyerProximal, buyerDistal, sellerProximal, amountWillingToLose, stopLoss, reward, risk, profit, loss, rrRatio, quantity, totalCost);
+        TradeJournal tradeJournal = new TradeJournal(id, tickerSymbol, atr, buyerProximal, buyerDistal, sellerProximal, amountWillingToLose, stopLoss, reward, risk, profit, loss, rrRatio, quantity, totalCost, notes);
         returnList.add(tradeJournal);
     }
 
@@ -140,6 +143,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(RRRATIO, tradeJournal.getRrRatio().toString());
         cv.put(QUANTITY, tradeJournal.getQuantity());
         cv.put(TOTAL_COST, tradeJournal.getTotalCost().toString());
+        if (tradeJournal.getNotes() == null) {
+            tradeJournal.setNotes("");
+        }
+        cv.put(NOTES, tradeJournal.getNotes());
 
         long insert = db.insert(TRADE_JOURNAL_TABLE, null, cv);
         db.close();
@@ -184,7 +191,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 LOSS + " = " + tradeJournal.getLoss().toString() + ", " +
                 RRRATIO + " = " + tradeJournal.getRrRatio().toString() + ", " +
                 QUANTITY + " = " + tradeJournal.getQuantity() + ", " +
-                TOTAL_COST + " = " + tradeJournal.getTotalCost() + " WHERE ID= " + tradeJournal.getId() ;
+                TOTAL_COST + " = " + tradeJournal.getTotalCost().toString() + ", " +
+                NOTES + " =\"" + tradeJournal.getNotes().replaceAll("'","\\'").replaceAll("\\s+$", "") + "\"" +
+                " WHERE ID= " + tradeJournal.getId() ;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
 

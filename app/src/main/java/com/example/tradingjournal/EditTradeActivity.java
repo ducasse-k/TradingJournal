@@ -27,6 +27,7 @@ public class EditTradeActivity extends AppCompatActivity {
     EditText etBuyerDistal;
     EditText etSellerProximal;
     EditText etWillingToLose;
+    EditText etNotes;
 
     Button editButton;
     Button deleteButton;
@@ -47,6 +48,7 @@ public class EditTradeActivity extends AppCompatActivity {
         etSellerProximal = findViewById(R.id.etSellerProximal);
         etWillingToLose = findViewById(R.id.etWillingToLose);
         tvTickerSymbol = findViewById(R.id.tv_tickerSymbol);
+        etNotes = findViewById(R.id.etNotes);
 
         editButton = findViewById(R.id.btnEdit);
         deleteButton = findViewById(R.id.btnDelete);
@@ -62,6 +64,7 @@ public class EditTradeActivity extends AppCompatActivity {
             etBuyerDistal.setText(tradeJournal.getBuyerDistal().toString());
             etSellerProximal.setText(tradeJournal.getBuyerDistal().toString());
             etWillingToLose.setText(tradeJournal.getAmountWillingToLose().toString());
+            etNotes.setText(tradeJournal.getNotes());
         }
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -80,13 +83,15 @@ public class EditTradeActivity extends AppCompatActivity {
                         !tradeJournal.getBuyerProximal().toString().equals(etBuyerProximal) ||
                         !tradeJournal.getBuyerDistal().toString().equals(etBuyerDistal) ||
                         !tradeJournal.getSellerProximal().toString().equals(etSellerProximal) ||
-                        !tradeJournal.getAmountWillingToLose().toString().equals(etWillingToLose)) {
+                        !tradeJournal.getAmountWillingToLose().toString().equals(etWillingToLose)
+                ) {
 
                     tradeJournal.setAtr(new BigDecimal(etAtr.getText().toString()));
                     tradeJournal.setBuyerProximal(new BigDecimal(etBuyerProximal.getText().toString()));
                     tradeJournal.setBuyerDistal(new BigDecimal(etBuyerDistal.getText().toString()));
                     tradeJournal.setSellerProximal(new BigDecimal(etSellerProximal.getText().toString()));
                     tradeJournal.setAmountWillingToLose(new BigDecimal(etWillingToLose.getText().toString()));
+                    tradeJournal.setNotes(etNotes.getText().toString());
 
                     TradeJournalService.performTradeCalculations(tradeJournal);
                     databaseHelper.updateTradeJournal(tradeJournal);
