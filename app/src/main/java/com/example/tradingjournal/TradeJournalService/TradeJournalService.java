@@ -15,6 +15,7 @@ public class TradeJournalService {
                 convertToBigDecimal(etBuyerDistal),
                 convertToBigDecimal(etSellerProximal),
                 convertToBigDecimal(etWillingToLose));
+        tradeJournal.setNotes("");
 
         return  performTradeCalculations(tradeJournal);
     }

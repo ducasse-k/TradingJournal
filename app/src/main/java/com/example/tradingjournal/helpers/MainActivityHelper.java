@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,7 +66,8 @@ public class MainActivityHelper {
     }
 
     public static void showTickerSymbolDialog(MainActivity mainActivity, int dialog_ticker_symbol, int submitTickerId,
-                                              int etTickerSymbolId, TradeJournal tradeJournal, DatabaseHelper databaseHelper) {
+                                              int etTickerSymbolId, TradeJournal tradeJournal, DatabaseHelper databaseHelper,
+                                              LinearLayout llStopLoss, LinearLayout llResults, EditText[] editTexts) {
         final Dialog dialog = new Dialog(mainActivity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
@@ -87,6 +89,11 @@ public class MainActivityHelper {
                     boolean success = databaseHelper.addTrade(tradeJournal);
                     if (success) {
                         Toast.makeText(context, "Trade Saved", Toast.LENGTH_LONG).show();
+                        llStopLoss.setVisibility(View.GONE);
+                        llResults.setVisibility(View.GONE);
+                        for (int i = 0; i < editTexts.length; i++) {
+                            editTexts[i].getText().clear();
+                        }
                     }
                 } else {
                     Toast.makeText(context, "Please Enter a Ticker Symbol", Toast.LENGTH_SHORT).show();

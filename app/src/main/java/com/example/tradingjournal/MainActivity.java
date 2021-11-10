@@ -1,18 +1,10 @@
 package com.example.tradingjournal;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.ClipData;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -24,14 +16,12 @@ import com.example.tradingjournal.TradeJournalService.TradeJournalService;
 import com.example.tradingjournal.dao.DatabaseHelper;
 import com.example.tradingjournal.helpers.MainActivityHelper;
 import com.example.tradingjournal.model.TradeJournal;
-import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity {
 
     Button calculateButton;
     Button clearButton;
     Button saveButton;
-    NavigationView navigationView;
 
     EditText etAtr;
     EditText etBuyerProximal;
@@ -53,20 +43,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     LinearLayout llErrorMessage;
     LinearLayout llMainLayout;
 
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle actionBarDrawerToggle;
     int llDialogTickerSymbol;
     TradeJournal tradeJournal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
-        setNavigationViewListener();
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-
-        setUpNavigationMenu();
 
         llResults = findViewById(R.id.llResults);
         llStopLoss = findViewById(R.id.llStopLoss);
@@ -84,14 +70,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 etAtr, etBuyerProximal, etBuyerDistal, etSellerProximal, etWillingToLose
         };
 
-        tvRisk = (TextView) findViewById(R.id.tvRisk);
-        tvReward = (TextView) findViewById(R.id.tvReward);
-        tvRiskRewardRatio = (TextView) findViewById(R.id.tvRiskRewardRatio);
-        tvQuantity = (TextView) findViewById(R.id.tvQuantity);
-        tvCost = (TextView) findViewById(R.id.tvCost);
-        tvPotentialProfit = (TextView) findViewById(R.id.tvPotentialProfit);
-        tvPotentialLoss = (TextView) findViewById(R.id.tvPotentialLoss);
-        tvStopLoss = (TextView) findViewById(R.id.tvStopLoss);
+        tvRisk = findViewById(R.id.tvRisk);
+        tvReward = findViewById(R.id.tvReward);
+        tvRiskRewardRatio = findViewById(R.id.tvRiskRewardRatio);
+        tvQuantity = findViewById(R.id.tvQuantity);
+        tvCost = findViewById(R.id.tvCost);
+        tvPotentialProfit = findViewById(R.id.tvPotentialProfit);
+        tvPotentialLoss = findViewById(R.id.tvPotentialLoss);
+        tvStopLoss = findViewById(R.id.tvStopLoss);
 
         saveButton = findViewById(R.id.btnSave);
         calculateButton = findViewById(R.id.btnCalculate);
@@ -122,26 +108,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivityHelper.showTickerSymbolDialog(MainActivity.this, llDialogTickerSymbol, R.id.btnSubmitTicker, R.id.etTickerSymbol, tradeJournal, databaseHelper);
+                MainActivityHelper.showTickerSymbolDialog(MainActivity.this, llDialogTickerSymbol,
+                        R.id.btnSubmitTicker, R.id.etTickerSymbol, tradeJournal,
+                        databaseHelper, llStopLoss, llResults, editTexts);
                 hideKeyboard(llMainLayout);
                 etWillingToLose.clearFocus();
             }
         });
 
-
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int i = 0; i < editTexts.length; i++) {
-                    editTexts[i].getText().clear();
-                }
-                llStopLoss.setVisibility(View.GONE);
-                llResults.setVisibility(View.GONE);
-                hideErrorMessage(llErrorMessage);
+                clearCalculations(editTexts);
                 etAtr.requestFocus();
             }
         });
 
+    }
+
+    private void clearCalculations(EditText[] editTexts) {
+        for (int i = 0; i < editTexts.length; i++) {
+            editTexts[i].getText().clear();
+        }
+        llStopLoss.setVisibility(View.GONE);
+        llResults.setVisibility(View.GONE);
+        hideErrorMessage(llErrorMessage);
     }
 
     public void hideKeyboard(LinearLayout llMainLayout) {
@@ -158,50 +149,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return false;
 
         return true;
-    }
-
-    private void setUpNavigationMenu() {
-        // drawer layout instance to toggle the menu icon to open
-        // drawer and back button to close drawer
-        drawerLayout = findViewById(R.id.my_drawer_layout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
-
-        // pass the Open and Close toggle for the drawer layout listener
-        // to toggle the button
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-
-        // to make the Navigation drawer icon always appear on the action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    // override the onOptionsItemSelected()
-    // function to implement
-    // the item click listener callback
-    // to open and close the navigation
-    // drawer when the icon is clicked
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.itemTradingJournals:
-                Intent i = new Intent(MainActivity.this, TradeListActivity.class);
-                MainActivity.this.startActivity(i);
-                break;
-        }
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    private void setNavigationViewListener() {
-        navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 }
