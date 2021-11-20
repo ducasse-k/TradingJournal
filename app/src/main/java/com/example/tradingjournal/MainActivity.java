@@ -49,10 +49,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         llResults = findViewById(R.id.llResults);
         llStopLoss = findViewById(R.id.llStopLoss);
@@ -93,6 +90,7 @@ public class MainActivity extends BaseActivity {
                     MainActivityHelper.setTextViewForCalculations(tvRisk, tvReward, tvRiskRewardRatio, tvQuantity, tvCost, tvPotentialProfit, tvPotentialLoss, tvStopLoss, saveButton, tradeJournal, getApplicationContext());
                     llStopLoss.setVisibility(View.VISIBLE);
                     llResults.setVisibility(View.VISIBLE);
+                    hideErrorMessage(llErrorMessage);
                 } else if (!isEmpty(etAtr) && isEmpty(etBuyerProximal) && !isEmpty(etBuyerDistal) && isEmpty(etSellerProximal) && isEmpty(etWillingToLose)) {
                     tradeJournal = TradeJournalService.newTradeJournal(etAtr, etBuyerDistal);
                     tvStopLoss.setText("Stop Loss: $" + TradeJournalService.performTradeCalculationsStopLoss(tradeJournal).toString());

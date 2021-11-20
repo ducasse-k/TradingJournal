@@ -1,13 +1,17 @@
 package com.example.tradingjournal;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -19,6 +23,13 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -71,7 +82,10 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 Intent j = new Intent(this, MainActivity.class);
                 this.startActivity(j);
                 break;
-
+            case R.id.itemOddEnhancers:
+                Intent k = new Intent(this, OddEnhancersActivity.class);
+                this.startActivity(k);
+                break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

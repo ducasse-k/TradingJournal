@@ -10,7 +10,7 @@
     android:background="@color/floral_white">
 
     <TableRow
-        android:background="@color/maximum_yellow_red"
+        android:background="@color/light_coral"
         android:padding="5dp">
 
         <TextView
@@ -192,7 +192,7 @@
         <TextView
             android:id="@+id/tv_Loss"
             android:layout_width="wrap_content"
-            android:layout_height="29dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Location" />
     </TableRow>

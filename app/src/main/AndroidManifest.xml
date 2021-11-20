@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TradingJournal">
         <activity
+            android:name=".OddEnhancersActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditTradeActivity"
             android:exported="false" />
         <activity
@@ -24,7 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="BaseActivity" />
+        <activity android:name=".BaseActivity" />
     </application>
 
 </manifest>
