@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TradingJournal">
         <activity
-            android:name=".model.OddEnhancersActivity"
+            android:name=".OddEnhancersActivity"
             android:exported="false" />
         <activity
             android:name=".EditTradeActivity"

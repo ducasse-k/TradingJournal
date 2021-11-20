@@ -32,20 +32,20 @@ public class TradeJournalService {
         BigDecimal stopLoss = calculateStopLoss(tradeJournal.getBuyerDistal(), tradeJournal.getAtr());
         BigDecimal reward = tradeJournal.getSellerProximal().subtract(tradeJournal.getBuyerProximal());
         BigDecimal risk = tradeJournal.getBuyerProximal().subtract(stopLoss);
-        BigDecimal rrRatio = reward.divide(risk, RoundingMode.HALF_UP);
-        BigDecimal quantity = tradeJournal.getAmountWillingToLose().divide(risk, RoundingMode.HALF_UP).setScale(0, RoundingMode.DOWN);
+        BigDecimal rrRatio = reward.divide(risk, 2, BigDecimal.ROUND_HALF_UP);
+        BigDecimal quantity = tradeJournal.getAmountWillingToLose().divide(risk, BigDecimal.ROUND_HALF_UP).setScale(0, RoundingMode.DOWN);
         BigDecimal cost = quantity.multiply(tradeJournal.getBuyerProximal());
         BigDecimal profit = quantity.multiply(reward);
         BigDecimal loss = quantity.multiply(risk);
 
-        tradeJournal.setStopLoss(stopLoss.setScale(2, RoundingMode.HALF_EVEN));
-        tradeJournal.setReward(reward.setScale(2, RoundingMode.HALF_EVEN));
-        tradeJournal.setRisk(risk.setScale(2, RoundingMode.HALF_EVEN));
-        tradeJournal.setRrRatio(rrRatio.setScale(2, RoundingMode.HALF_EVEN));
+        tradeJournal.setStopLoss(stopLoss.setScale(2,BigDecimal.ROUND_HALF_UP ));
+        tradeJournal.setReward(reward.setScale(2, BigDecimal.ROUND_HALF_UP));
+        tradeJournal.setRisk(risk.setScale(2, BigDecimal.ROUND_HALF_UP));
+        tradeJournal.setRrRatio(rrRatio.setScale(2, BigDecimal.ROUND_HALF_UP));
         tradeJournal.setQuantity(quantity.intValue());
-        tradeJournal.setTotalCost(cost.setScale(2, RoundingMode.HALF_EVEN));
-        tradeJournal.setProfit(profit.setScale(2, RoundingMode.HALF_EVEN));
-        tradeJournal.setLoss(loss.setScale(2, RoundingMode.HALF_EVEN));
+        tradeJournal.setTotalCost(cost.setScale(2, BigDecimal.ROUND_HALF_UP));
+        tradeJournal.setProfit(profit.setScale(2, BigDecimal.ROUND_HALF_UP));
+        tradeJournal.setLoss(loss.setScale(2, BigDecimal.ROUND_HALF_UP));
 
         return tradeJournal;
     }

@@ -26,12 +26,10 @@ public class TradeListActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade_list_actvity);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         ActionBar actionBar;
         actionBar = getSupportActionBar();
-        ColorDrawable colorDrawable = new ColorDrawable(getResources().getColor(R.color.maximum_yellow_red));
+        ColorDrawable colorDrawable = new ColorDrawable(getResources().getColor(R.color.light_coral));
         actionBar.setBackgroundDrawable(colorDrawable);
 
         recyclerView = findViewById(R.id.rvTradesList);

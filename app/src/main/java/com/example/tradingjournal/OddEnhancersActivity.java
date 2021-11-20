@@ -1,4 +1,4 @@
-package com.example.tradingjournal.model;
+package com.example.tradingjournal;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
@@ -37,8 +37,6 @@ public class OddEnhancersActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_odd_enhancers);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         ActionBar actionBar;
         actionBar = getSupportActionBar();
@@ -47,6 +45,7 @@ public class OddEnhancersActivity extends BaseActivity {
         oddEnhancersScore = 0;
         tlOddEnhancers = findViewById(R.id.tlOddEnhancers);
         tvOddEnhancerScore = findViewById(R.id.totalScore);
+        tvOddEnhancerScore.setText(String.valueOf(oddEnhancersScore));
         childTableRowsCount = tlOddEnhancers.getChildCount();
 
         TableRow[] tableRows = new TableRow[childTableRowsCount];

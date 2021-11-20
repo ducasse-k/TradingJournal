@@ -10,7 +10,7 @@
     android:background="@color/floral_white">
 
     <TableRow
-        android:background="@color/maximum_yellow_red"
+        android:background="@color/light_coral"
         android:padding="5dp">
 
         <TextView
